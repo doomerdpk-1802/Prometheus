@@ -4,8 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc -b",
-    "start": "npm run build && node dist/index.js"
+    "build": "npx tsc -b",
+    "start": "npm run build && node dist/index.js",
+    "start-docker": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
   "dependencies": {
     "@types/express": "^5.0.6",
     "express": "^5.2.1",
-    "prom-client": "^15.1.3"
+    "prom-client": "^15.1.3",
+    "typescript": "^6.0.2"
   }
 }

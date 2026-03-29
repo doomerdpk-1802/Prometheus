@@ -1,0 +1,12 @@
+services:
+  node-app:
+    build: ./
+    ports:
+      - "3000:3000"
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prom.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
