@@ -4,6 +4,28 @@ services:
     ports:
       - "3000:3000"
 
+  node-exporter:
+    image: prom/node-exporter:latest
+    # gives node-exporter visibility into all processes running on the host machine
+    pid: host
+    # Node Exporter reads host metrics by reading special Linux virtual filesystems
+    # mounting them read-only (:ro) into the container so node-exporter can read them
+    volumes:
+      # CPU usage, memory, running processes, network stats
+      - /proc:/host/proc:ro
+      #  disk I/O, network interfaces, CPU topology, filesystem stats
+      - /sys:/host/sys:ro
+      # Mounts the entire host filesystem. Needed so node-exporter can calculate real disk usage across all mounted partitions on the host
+      - /:/rootfs:ro
+    # tell node-exporter where to find the mounted paths, since they're not at the default Linux locations inside the container
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+      - "--path.rootfs=/rootfs"
+      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
+    ports:
+      - "9100:9100"
+
   prometheus:
     image: prom/prometheus:latest
     volumes:
