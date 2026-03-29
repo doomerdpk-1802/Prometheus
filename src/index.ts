@@ -25,6 +25,9 @@ app.get("/delay", async (req, res) => {
   res.send("2 sec delay!");
 });
 
+// Collects: heap, event loop lag, GC, active handles, CPU usage
+client.collectDefaultMetrics();
+
 app.get("/metrics", async (req, res) => {
   const metrics = await client.register.metrics();
   res.set("Content-Type", client.register.contentType);
