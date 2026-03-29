@@ -1,6 +1,9 @@
 import express from "express";
+import { responseTime } from "./middlewares/response_time.js";
 
 const app = express();
+
+app.use(responseTime);
 
 app.get("/greet", (req, res) => {
   res.send("Hello Deepak!");
