@@ -20,6 +20,11 @@ app.get("/details", (req, res) => {
   });
 });
 
+app.get("/delay", async (req, res) => {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  res.send("2 sec delay!");
+});
+
 app.get("/metrics", async (req, res) => {
   const metrics = await client.register.metrics();
   res.set("Content-Type", client.register.contentType);
