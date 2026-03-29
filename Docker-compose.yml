@@ -26,6 +26,14 @@ services:
     ports:
       - "9100:9100"
 
+  cron-job:
+    build: ./
+
+  pushgateway:
+    image: prom/pushgateway:latest
+    ports:
+      - "9091:9091"
+
   prometheus:
     image: prom/prometheus:latest
     volumes:

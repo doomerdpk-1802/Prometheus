@@ -1,0 +1,1 @@
+* * * * * /scripts/app_uptime.sh >> /var/log/cron.log 2>&1
