@@ -27,7 +27,7 @@ services:
       - "9100:9100"
 
   cron-job:
-    build: ./
+    build: ./cron
 
   pushgateway:
     image: prom/pushgateway:latest

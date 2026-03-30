@@ -24,7 +24,7 @@ export function metricsMiddleware(
     httpReqDurationMs.observe(
       {
         method: req.method,
-        route: req.route.path,
+        route: req.route?.path,
         status_code: res.statusCode,
       },
       duration,
